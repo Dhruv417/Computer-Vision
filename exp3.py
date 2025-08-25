@@ -6,12 +6,10 @@ img = cv2.imread('exp3image.jpg', cv2.IMREAD_GRAYSCALE)
 
 hist_eq = cv2.equalizeHist(img)
 
-# Contrast stretching
 min_val = np.min(img)
 max_val = np.max(img)
 contrast_stretched = ((img - min_val) / (max_val - min_val) * 255).astype(np.uint8)
 
-# Display images and histograms
 plt.figure(figsize=(12,8))
 
 plt.subplot(2,3,1)
