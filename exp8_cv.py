@@ -1,56 +1,40 @@
 import cv2
 import numpy as np
-from google.colab import files
-from PIL import Image
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 
-print("Please upload an image file:")
-uploaded = files.upload()
+# Read the image 
+img = cv2.imread('die.jpg', cv2.IMREAD_COLOR)
+if img is None:
+    print("Image not found. Make sure 'input.jpg' is in the same directory as this script.")
+    exit()
 
-# Get the uploaded file name
-filename = list(uploaded.keys())[0]
-print(f"Uploaded file: {filename}")
-
-img = cv2.imread(filename)
-img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-
-# Convert to grayscale for better morphological operations
+# Convert to grayscale
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-# Define kernel for morphological operations
+# Define the kernel
 kernel = np.ones((5, 5), np.uint8)
 
-# Perform Erosion
+# Perform dilation and erosion
+dilated = cv2.dilate(gray, kernel, iterations=1)
 eroded = cv2.erode(gray, kernel, iterations=1)
 
-# Perform Dilation
-dilated = cv2.dilate(gray, kernel, iterations=1)
+# Display the images
+plt.figure(figsize=(12, 4))
 
-fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+plt.subplot(1, 3, 1)
+plt.title("Original Grayscale")
+plt.imshow(gray, cmap='gray')
+plt.axis('off')
 
-# Original image
-axes[0, 0].imshow(img_rgb)
-axes[0, 0].set_title('Original Image', fontsize=14, fontweight='bold')
-axes[0, 0].axis('off')
+plt.subplot(1, 3, 2)
+plt.title("Dilated")
+plt.imshow(dilated, cmap='gray')
+plt.axis('off')
 
-# Grayscale image
-axes[0, 1].imshow(gray, cmap='gray')
-axes[0, 1].set_title('Grayscale Image', fontsize=14, fontweight='bold')
-axes[0, 1].axis('off')
-
-# Eroded image
-axes[1, 0].imshow(eroded, cmap='gray')
-axes[1, 0].set_title('Eroded Image', fontsize=14, fontweight='bold')
-axes[1, 0].axis('off')
-
-# Dilated image
-axes[1, 1].imshow(dilated, cmap='gray')
-axes[1, 1].set_title('Dilated Image', fontsize=14, fontweight='bold')
-axes[1, 1].axis('off')
+plt.subplot(1, 3, 3)
+plt.title("Eroded")
+plt.imshow(eroded, cmap='gray')
+plt.axis('off')
 
 plt.tight_layout()
 plt.show()
-
-print("\nOperations completed successfully!")
-print(f"Original image shape: {img.shape}")
-print(f"Kernel size: {kernel.shape}")
