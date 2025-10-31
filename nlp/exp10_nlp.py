@@ -1,4 +1,4 @@
-mport sys
+import sys
 import re
 from pathlib import Path
 from typing import Tuple, List
@@ -193,7 +193,7 @@ def cosine_similarities(text_a: str, text_b: str) -> Tuple[float, float]:
 
 
 def main() -> None:
-    file_arg = Path(sys.argv[1]) if len(sys.argv) > 1 else Path('file.txt')
+    file_arg = Path(sys.argv[1]) if len(sys.argv) > 1 else Path('input.txt')
     if not file_arg.exists():
         raise FileNotFoundError(f"Input file not found: {file_arg}")
 

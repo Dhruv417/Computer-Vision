@@ -1,0 +1,14 @@
+Natural Language Processing (NLP) is a fascinating field of Artificial Intelligence.
+It helps computers understand, analyze, and process human languages such as English, Spanish, German, and Hindi.
+Applications of NLP include chatbots, virtual assistants, translation systems, search engines, and sentiment analysis.
+
+Preprocessing steps are critical in NLP. These include:
+1. Tokenization - splitting text into words or sentences.
+2. Stopword Removal - removing common words like 'the', 'is', and 'and'.
+3. Stemming - reducing words to their crude root form (e.g., 'running' → 'run', 'better' → 'bett').
+4. Lemmatization - reducing words to their meaningful root form using grammar rules (e.g., 'running' → 'run', 'better' → 'good').
+5. POS Tagging - assigning parts of speech like noun, verb, adjective to each word.
+
+NLP has become extremely important in recent years due to the rise of machine learning and deep learning.
+Companies like Google, Microsoft, and Amazon rely on NLP to power applications that improve user experience,
+such as voice recognition, recommendation systems, and automatic summarization.
